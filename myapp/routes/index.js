@@ -7,6 +7,10 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+router.get('/login', function(req, res, next) {
+	res.render('login', { title: 'Admin Login' });
+});
+
 router.get('/find', function(req, res, next) {
 	User.find(req.query, function(err, user) {
 	  if (err) throw err;
@@ -45,9 +49,6 @@ router.delete('/delete', function(req, res, next) {
 	  console.log('User deleted!');
 	});
 });
-
-
-// router.put('/')
 
 
 module.exports = router;
