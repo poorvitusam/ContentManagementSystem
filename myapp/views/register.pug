@@ -1,13 +1,16 @@
 extends layout
 
 block content
+	a(href='login') Login
 	h1 Welcome to #{title}
-	h2 Enter name and password to login!
-	form(method = 'post' action='/login')
+	h2 Enter name to create user!
+	form(method = 'post' action='/register')
 		div 
 			input(type='text' name='username' placeholder='Username')
 		div
 			input(type='password' name='password' placeholder='Password')
+		div
+			input(type='password' name='password2' placeholder='Re-enter Password')
 		input(type='submit')
 
 	div(ng-view)
