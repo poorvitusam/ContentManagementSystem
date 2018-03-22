@@ -1,0 +1,13 @@
+.header {
+	background-color: #eff;
+	&_cell {
+		display: inline-block;
+		width: 130px;
+		text-align: center;
+
+		:hover {
+			/*background-color: #000;*/
+			cursor: pointer;
+		}
+	}
+}

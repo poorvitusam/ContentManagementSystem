@@ -8,8 +8,10 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
     "connect-flash": "*",
+    "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "*",
     "express-handlebars": "*",
@@ -26,6 +28,8 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
     "nodemon": "^1.17.2"
   }
 }
