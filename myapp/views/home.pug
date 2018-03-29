@@ -1,23 +1,34 @@
 extends layout
 
 block content
-	div(class="header")
-		span(class="header_cell") 
-			h3 Home
-		span(class="header_cell") 
-			h3 Services
-		span(class="header_cell") 
-			h3 Education
-		span(class="header_cell") 
-			h3 Friends
-		span(class="header_cell") 
-			h3 Partner
-		span(class="header_cell") 
-			h3 In Memory
-		span(class="header_cell") 
-			h3 Donate
-		span(class="header_cell") 
-			h3 About Us
+	div(class="navbar navbar-default navbar-fixed-top header")
+		div(class="container")
+			span(class="header_cell") 
+				h3 Home
+			span(class="header_cell") 
+				h3 Services
+			span(class="header_cell") 
+				h3 Education
+			span(class="header_cell") 
+				h3 Friends
+			span(class="header_cell") 
+				h3 Partner
+			span(class="header_cell") 
+				h3 In Memory
+			span(class="header_cell") 
+				h3 Donate
+			span(class="header_cell") 
+				h3 About Us
 
-	block footer
+	div(class="container")
+			div(class="content-block")
+				div(class="title") 
+					h3(class="mb-30") Making Hope Real Since 1986 
+					h1(class="heading") 24 Hour Hotline 607-687-6866 1-800-696-7600
+					h4 Emails will be answered within three business days. You can also reach us now by text: 607-972-1996
+
+				h5(class="ac") We all deserve to enjoy our lives and feel safe in our homes and with our dating partners. Let your family and friends know it's okay to talk about abuse that happens in their relationships. Call ANHC to talk about these issues and discuss options available.Help ANHC and the people we serve by shopping!  When you already use Amazon, register through amazon smile and seamlessly have small donations go directly to ANHC. 
+				h5(class="ac") If you can help, please click on our donation tab at the top. Every little bit helps, and it's a way for all of us to lend our voice for safety and peace.
+
+	div(class="footer")
 	div(ng-view)

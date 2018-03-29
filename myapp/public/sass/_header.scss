@@ -1,13 +1,15 @@
 .header {
-	background-color: #eff;
+	background-color: #212121;
 	&_cell {
 		display: inline-block;
 		width: 130px;
 		text-align: center;
+		color: #FFE0B2;
 
 		:hover {
 			/*background-color: #000;*/
 			cursor: pointer;
+			color: #fff;
 		}
 	}
 }
