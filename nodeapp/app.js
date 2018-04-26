@@ -12,10 +12,13 @@ var LocalStrategy = require('passport-local').Strategy;
 
 
 var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/angularnodecms');
+
 var index = require('./routes/index');
-var login = require('./routes/login');
-var home = require('./routes/home');
-var api = require('./routes/api');
+// var login = require('./routes/login');
+// var home = require('./routes/home');
+// var api = require('./routes/api');
 
 var app = express();
 
@@ -99,11 +102,14 @@ app.use(function (req, res, next) {
 
 //Set routes
 var pages = require('./routes/page.js');
+var users = require('./routes/user.js');
 
 app.use('/pages', pages);
-app.use('/login', login); 
-app.use('/api', api);
-app.use('/admin', index);
+app.use('/users', users);
+
+// app.use('/login', login); 
+// app.use('/api', api);
+// app.use('/admin', index);
 app.use('/',pages);
 
 // catch 404 and forward to error handler
