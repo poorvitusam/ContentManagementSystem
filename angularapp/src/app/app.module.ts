@@ -12,10 +12,15 @@ import { Title } from '@angular/platform-browser';
 import { UserService } from './services/user.service';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AdminPagesComponent } from './components/admin-pages/admin-pages.component';
+import { AdminEditPageComponent } from './components/admin-edit-page/admin-edit-page.component';
  
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'admin/pages', component: AdminPagesComponent},
+  {path: 'admin/edit-page/:id', component: AdminEditPageComponent},
   {path: ':page', component: PagesComponent},
   {path: '', component: PagesComponent}
 ] 
@@ -26,7 +31,10 @@ const appRoutes: Routes = [
     NavbarComponent,
     PagesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    AdminPagesComponent,
+    AdminEditPageComponent
   ],
   imports: [
     BrowserModule,

@@ -20,4 +20,16 @@ export class PageService {
       .map(res => res.json());
   }
 
+  getEditPage(id){
+    return this.http.get('http://localhost:3000/pages/edit-page/' + id)
+      .map(res => res.json());
+  }
+
+  postEditPage(value) {
+      return this.http.post('http://localhost:3000/pages/edit-page/'+value.id, value)
+          .map(res => res.json());
+      // return this.http.post('http://localhost:3000/pages/edit-page/'+value.id, value);
+  }
+  
+
 }

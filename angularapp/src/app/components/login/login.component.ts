@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           }.bind(this),2000);
         } else {
           localStorage.setItem("user", JSON.stringify(res));
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('admin/pages');
         }
       });
     }
