@@ -9,8 +9,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PageService } from './services/page.service';
 import { PagesComponent } from './components/pages/pages.component';
 import { Title } from '@angular/platform-browser';
+import { UserService } from './services/user.service';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
  
 const appRoutes: Routes = [
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
   {path: ':page', component: PagesComponent},
   {path: '', component: PagesComponent}
 ] 
@@ -19,7 +24,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    PagesComponent
+    PagesComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     PageService,
-    Title
+    Title,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
