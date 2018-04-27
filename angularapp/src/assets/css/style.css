@@ -1,3 +1,5 @@
+@import "~jsoneditor/dist/jsoneditor.min.css";
+
 .container .title {
   text-align: center;
   margin: 80px 0; }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
-// import { NgJsonEditorModule } from 'ang-jsoneditor' 
+import { NgJsonEditorModule } from 'ang-jsoneditor' 
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    // NgJsonEditorModule
+    NgJsonEditorModule
   ],
   providers: [
     PageService,

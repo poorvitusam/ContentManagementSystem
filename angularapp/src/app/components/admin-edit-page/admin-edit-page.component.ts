@@ -1,35 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PageService } from '../../services/page.service';
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 
-declare var CKEDITOR: any;
+// declare var CKEDITOR: any;
 
 @Component({
   selector: 'app-admin-edit-page',
   templateUrl: './admin-edit-page.component.html',
   styleUrls: ['./admin-edit-page.component.css']
 })
+
 export class AdminEditPageComponent implements OnInit {
 
   page: any;
   title: string;
-  content: string;
+  // content: string;
   id: string;
   successMsg: boolean = false;
   errorMsg: boolean = false;
   errorMsg2: boolean = false;
   param: any;
+  public editorOptions: JsonEditorOptions;
+  public content: any;
+  @ViewChild(JsonEditorComponent) editor: JsonEditorComponent;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private pageService: PageService
-  ) { }
+  ) { 
+    this.editorOptions = new JsonEditorOptions()
+    this.editorOptions.mode = 'code';
+  }
 
   ngOnInit() {
     if (!localStorage.getItem("user")) {
       this.router.navigateByUrl('');
     } else {
-        CKEDITOR.replace('content');
+        // CKEDITOR.replace('content');
+    }
+    this.content = {
+      'randomNumber': 10,
+      // 'products': [
+      //   {
+      //     'name': 'car',
+      //     'product':
+      //       [
+      //         {
+      //           'name': 'honda',
+      //           'model': [
+      //             { 'id': 'civic', 'name': 'civic' },
+      //             { 'id': 'accord', 'name': 'accord' }, { 'id': 'crv', 'name': 'crv' },
+      //             { 'id': 'pilot', 'name': 'pilot' }, { 'id': 'odyssey', 'name': 'odyssey' }
+      //           ]
+      //         }
+      //       ]
+      //   }
+      // ]
     }
 
     this.route.params.subscribe(params => {
@@ -37,40 +65,40 @@ export class AdminEditPageComponent implements OnInit {
         this.pageService.getEditPage(this.param).subscribe(page => {
             this.page = page;
             this.title = page["title"];
-            this.content = page["content"];
+            // this.content = page["content"];
             this.id = page["_id"];
         });
     });
+    
   }
 
   editPage({ value, valid}) {
     if (valid) {
-        value.content = CKEDITOR.instances.content.getData();
-        this.pageService.postEditPage(value).subscribe(res => {
-            if (res == 'pageExists') {
-                this.errorMsg = true;
-                setTimeout(function() {
-                    this.errorMsg = false;
-                }.bind(this),2000);
-            } else if (res == 'problem') {
-                this.errorMsg2 = true;
-                setTimeout(function() {
-                    this.errorMsg2 = false;
-                }.bind(this),2000);
-            } else {
-                this.successMsg = true;
-                setTimeout(function() {
-                    this.successMsg = false;
-                }.bind(this),2000);
+      // value.content = CKEDITOR.instances.content.getData();
+      this.pageService.postEditPage(value, localStorage.getItem("user")).subscribe(res => {
+          if (res == 'pageExists') {
+              this.errorMsg = true;
+              setTimeout(function() {
+                  this.errorMsg = false;
+              }.bind(this),2000);
+          } else if (res == 'problem') {
+              this.errorMsg2 = true;
+              setTimeout(function() {
+                  this.errorMsg2 = false;
+              }.bind(this),2000);
+          } else {
+              this.successMsg = true;
+              setTimeout(function() {
+                  this.successMsg = false;
+              }.bind(this),2000);
 
-                this.pageService.getPages().subscribe(pages => {
-                    this.pageService.pagesBS.next(pages);
-                });
-            }
-        });
+              this.pageService.getPages().subscribe(pages => {
+                  this.pageService.pagesBS.next(pages);
+              });
+          }
+      });
     } else {
         console.log('Form is not valid.');
     }
-}
-
+  }
 }
