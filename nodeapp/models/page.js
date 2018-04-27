@@ -10,8 +10,11 @@ var PageSchema = mongoose.Schema({
     content : {
         type : String
     },
-    sidebar : {
+    lastEditedBy: {
         type : String
+    },
+    lastEditedDate: {
+        type : Date
     },
 })
 

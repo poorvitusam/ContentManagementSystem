@@ -25,8 +25,8 @@ export class PageService {
       .map(res => res.json());
   }
 
-  postEditPage(value) {
-      return this.http.post('http://localhost:3000/pages/edit-page/'+value.id, value)
+  postEditPage(value,user) {
+      return this.http.post('http://localhost:3000/pages/edit-page/'+value.id, {value, user})
           .map(res => res.json());
       // return this.http.post('http://localhost:3000/pages/edit-page/'+value.id, value);
   }

@@ -41,10 +41,12 @@ router.get('/edit-page/:id', function(req, res) {
 router.post('/edit-page/:id', function (req, res) {
 
     var id = req.params.id;
-
-    var title = req.body.title;
-    var slug = req.body.title.replace(/\s+/g, '-').toLowerCase();
-    var content = req.body.content;
+    console.log(req.body)
+    var lastEditedBy = req.body.user;
+    // var lastEditedDate = = new Date;
+    var title = req.body.value.title;
+    var slug = req.body.value.title.replace(/\s+/g, '-').toLowerCase();
+    var content = req.body.value.content;
 
     Page.findOne({ slug: slug, _id: { '$ne': id } }, function (e, p) {
         if (e) console.log(e);
@@ -57,6 +59,8 @@ router.post('/edit-page/:id', function (req, res) {
                 page.title = title;
                 page.slug = slug;
                 page.content = content;
+                page.lastEditedBy = lastEditedBy;
+                // page.lastEditedDate = lastEditedDate;
 
                 page.save(function (err) {
                     if (err) {
