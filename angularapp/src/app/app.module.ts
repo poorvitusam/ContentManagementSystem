@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
+// import { NgJsonEditorModule } from 'ang-jsoneditor' 
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +20,7 @@ import { AdminEditPageComponent } from './components/admin-edit-page/admin-edit-
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: 'admin/pages', component: AdminPagesComponent},
   {path: 'admin/edit-page/:id', component: AdminEditPageComponent},
   {path: ':page', component: PagesComponent},
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    // NgJsonEditorModule
   ],
   providers: [
     PageService,
