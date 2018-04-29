@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 
-// declare var CKEDITOR: any;
+declare var CKEDITOR: any;
 
 @Component({
   selector: 'app-admin-edit-page',
@@ -31,7 +31,7 @@ export class AdminEditPageComponent implements OnInit {
     private pageService: PageService
   ) { 
     this.editorOptions = new JsonEditorOptions()
-    this.editorOptions.mode = 'code';
+    this.editorOptions.modes = ['code', 'text', 'tree', 'view']; ;
   }
 
   ngOnInit() {
@@ -40,32 +40,32 @@ export class AdminEditPageComponent implements OnInit {
     } else {
         // CKEDITOR.replace('content');
     }
-    this.content = {
-      'randomNumber': 10,
-      // 'products': [
-      //   {
-      //     'name': 'car',
-      //     'product':
-      //       [
-      //         {
-      //           'name': 'honda',
-      //           'model': [
-      //             { 'id': 'civic', 'name': 'civic' },
-      //             { 'id': 'accord', 'name': 'accord' }, { 'id': 'crv', 'name': 'crv' },
-      //             { 'id': 'pilot', 'name': 'pilot' }, { 'id': 'odyssey', 'name': 'odyssey' }
-      //           ]
-      //         }
-      //       ]
-      //   }
-      // ]
-    }
+    // this.content = {
+    //   'randomNumber': 10,
+    //   'products': [
+    //     {
+    //       'name': 'car',
+    //       'product':
+    //         [
+    //           {
+    //             'name': 'honda',
+    //             'model': [
+    //               { 'id': 'civic', 'name': 'civic' },
+    //               { 'id': 'accord', 'name': 'accord' }, { 'id': 'crv', 'name': 'crv' },
+    //               { 'id': 'pilot', 'name': 'pilot' }, { 'id': 'odyssey', 'name': 'odyssey' }
+    //             ]
+    //           }
+    //         ]
+    //     }
+    //   ]
+    // }
 
     this.route.params.subscribe(params => {
       this.param = params['id'];
         this.pageService.getEditPage(this.param).subscribe(page => {
             this.page = page;
             this.title = page["title"];
-            // this.content = page["content"];
+            this.content = JSON.parse(page["content"]);
             this.id = page["_id"];
         });
     });
@@ -74,7 +74,8 @@ export class AdminEditPageComponent implements OnInit {
 
   editPage({ value, valid}) {
     if (valid) {
-      // value.content = CKEDITOR.instances.content.getData();
+      console.log(this.editor.get());
+      value.content = JSON.stringify(this.editor.get());
       this.pageService.postEditPage(value, localStorage.getItem("user")).subscribe(res => {
           if (res == 'pageExists') {
               this.errorMsg = true;
