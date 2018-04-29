@@ -1,7 +1,11 @@
-<h1 class="page-title">Register</h1>
+<h1 class="page-title">Register Admin</h1>
+
+<div class="alert alert-success" *ngIf="successMsg">
+  <p>Congratulations!! A new user has been added</p>
+</div>
 
 <div class="alert alert-danger" *ngIf="userExists">
-  <p>The user already exists</p>
+  <p>Oops! The user already exists</p>
 </div>
 
 <form novalidate #f="ngForm" (ngSubmit)="register(f)">

@@ -13,6 +13,7 @@ export class PagesComponent implements OnInit {
   private param:any;
   public pageBody:any;
   public pages:any;
+  public pageContent:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,8 +41,8 @@ export class PagesComponent implements OnInit {
         if(pageBody == null) {
           this.router.navigateByUrl('');
         }
-        console.log(pageBody);
         this.pageBody = pageBody;
+        this.pageContent = pageBody ? JSON.parse(pageBody.content) : {}; 
       });
     })
 

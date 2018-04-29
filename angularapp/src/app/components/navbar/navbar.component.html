@@ -19,6 +19,12 @@
       </ul>
       <ul *ngIf="userLoggedIn" class="nav navbar-nav navbar-right">
         <li>
+            <a routerLink="/admin/pages">Pages</a>
+          </li>
+        <li>
+          <a routerLink="/register">Register Admin</a>
+        </li>
+        <li>
           <a routerLink="/logout">Hi {{ user }}, logout</a>
         </li>
       </ul>

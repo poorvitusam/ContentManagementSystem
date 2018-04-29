@@ -10,6 +10,7 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent implements OnInit {
 
   userExists: boolean= false;
+  successMsg: boolean= false;
 
   constructor(
     private userService : UserService,
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register({value, valid}) {
+  register({form, value, valid}) {
     console.log(value);
     if(valid) {
       this.userService.register(value).subscribe(res => {
@@ -29,7 +30,11 @@ export class RegisterComponent implements OnInit {
             this.userExists = false;
           }.bind(this),2000);
         } else {
-          this.router.navigateByUrl('login');
+          form.reset();
+          this.successMsg = true;
+          setTimeout(function() {
+            this.successMsg = false;
+          }.bind(this),2000);
         }
       });
     }
